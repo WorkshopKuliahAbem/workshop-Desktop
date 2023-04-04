@@ -331,15 +331,21 @@ public class MasterService extends javax.swing.JFrame {
         if (jTextField2.getText().length() < 1) {
             JOptionPane.showMessageDialog(this, "Harap memilih salah satu");
         } else{
-            try{
-                String query = "DELETE FROM mst_service where id_service= "+id;
-                Utils.execQuery(query);
-                JOptionPane.showMessageDialog(null, "Berhasil menghapus data!", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
-                clear();
-                disabled();
-                loadData("");
-            } catch(Exception e){
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+            int opt = JOptionPane.showConfirmDialog(null, "Yakin Untuk Menghapus", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (opt == JOptionPane.YES_OPTION) {
+                try{
+                    String query = "DELETE FROM mst_service where id_service= "+id;
+                    Utils.execQuery(query);
+                    JOptionPane.showMessageDialog(null, "Berhasil menghapus data!", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                    clear();
+                    disabled();
+                    loadData("");
+                }
+                catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
