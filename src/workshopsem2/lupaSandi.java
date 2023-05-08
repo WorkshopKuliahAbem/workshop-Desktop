@@ -8,6 +8,7 @@ package workshopsem2;
  *
  * @author bimai
  */
+import java.awt.Color;
 public class lupaSandi extends javax.swing.JFrame {
 
     /**
@@ -26,12 +27,36 @@ public class lupaSandi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ubahKataSandi = new javax.swing.JLabel();
+        btn_submit = new javax.swing.JButton();
+        kembali = new javax.swing.JLabel();
+        btn_kembali = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ubahKataSandi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/lupa sandi/Button Bayar.png"))); // NOI18N
+        getContentPane().add(ubahKataSandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 740, -1, -1));
+
+        btn_submit.setBackground(new Color(0,0,0,0));
+        btn_submit.setBorder(null);
+        getContentPane().add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 740, 250, 40));
+
+        kembali.setBackground(new Color(0,0,0,0));
+        kembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/lupa sandi/button kembali.png"))); // NOI18N
+        getContentPane().add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 800, -1, -1));
+
+        btn_kembali.setBackground(new Color(0,0,0,0));
+        btn_kembali.setBorder(null);
+        btn_kembali.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_kembaliMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 800, 90, 20));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/lupa sandi/Kotak lupa Login.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 220, -1, -1));
@@ -44,6 +69,12 @@ public class lupaSandi extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_kembaliMouseClicked
+        // TODO add your handling code here:
+        new MainLogin().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_kembaliMouseClicked
 
     /**
      * @param args the command line arguments
@@ -81,8 +112,12 @@ public class lupaSandi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_kembali;
+    private javax.swing.JButton btn_submit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel kembali;
+    private javax.swing.JLabel ubahKataSandi;
     // End of variables declaration//GEN-END:variables
 }
