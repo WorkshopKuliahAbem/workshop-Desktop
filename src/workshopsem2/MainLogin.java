@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package workshopsem2;
-
+import java.awt.Color;
+import java.awt.Font;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 /**
  *
  * @author Tole
@@ -14,6 +18,7 @@ public class MainLogin extends javax.swing.JFrame {
     /**
      * Creates new form MainLogin
      */
+    Utils util = new Utils();
     public MainLogin() {
         initComponents();
     }
@@ -27,31 +32,107 @@ public class MainLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        nama_pengguna = new javax.swing.JTextField();
+        kata_sandi = new javax.swing.JTextField();
+        lupa_sandi = new javax.swing.JLabel();
+        btn_lupaSandi = new javax.swing.JPanel();
+        login = new javax.swing.JLabel();
+        btn_login = new javax.swing.JButton();
+        kotak_login = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("LOGIN");
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Login/Logo_Login.png"))); // NOI18N
+        getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+        nama_pengguna.setBackground(new Color(0,0,0,0));
+        nama_pengguna.setFont(new java.awt.Font("Lexend", 1, 30)); // NOI18N
+        nama_pengguna.setForeground(new java.awt.Color(71, 81, 90));
+        nama_pengguna.setBorder(null);
+        getContentPane().add(nama_pengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 430, 380, 40));
+
+        kata_sandi.setBackground(new Color(0,0,0,0));
+        kata_sandi.setFont(new java.awt.Font("Lexend", 1, 30)); // NOI18N
+        kata_sandi.setForeground(new java.awt.Color(71, 81, 90));
+        kata_sandi.setBorder(null);
+        getContentPane().add(kata_sandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 580, 380, 40));
+
+        lupa_sandi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Login/Lupa_Sandi.png"))); // NOI18N
+        getContentPane().add(lupa_sandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(1451, 640, 120, 40));
+
+        btn_lupaSandi.setBackground(new Color(0,0,0,0));
+        btn_lupaSandi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_lupaSandiMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btn_lupaSandiLayout = new javax.swing.GroupLayout(btn_lupaSandi);
+        btn_lupaSandi.setLayout(btn_lupaSandiLayout);
+        btn_lupaSandiLayout.setHorizontalGroup(
+            btn_lupaSandiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
+        btn_lupaSandiLayout.setVerticalGroup(
+            btn_lupaSandiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        pack();
+        getContentPane().add(btn_lupaSandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 650, 120, 20));
+
+        login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Login/Button_Login.png"))); // NOI18N
+        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 700, 190, 50));
+
+        btn_login.setBackground(new Color(0,0,0,0));
+        btn_login.setText("jButton1");
+        btn_login.setBorder(null);
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loginActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 700, 190, 40));
+
+        kotak_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Login/Kotak_Login.png"))); // NOI18N
+        getContentPane().add(kotak_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 220, -1, -1));
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Login/background_Login.jpg"))); // NOI18N
+        background.setText("jLabel1");
+        background.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jTextField1.setText("jTextField1");
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
+
+        setSize(new java.awt.Dimension(1934, 1087));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
+        // TODO add your handling code here:
+         try {
+            String sql = "SELECT * FROM mst_karyawan WHERE username ='" + nama_pengguna.getText()
+                    + "' AND password_karyawan='" + kata_sandi.getText() + "'";
+            Connection conn = (Connection) Utils.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery(sql);
+            new dashboard().setVisible(true);
+            this.dispose();
+         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+           }
+    }//GEN-LAST:event_btn_loginActionPerformed
+
+    private void btn_lupaSandiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_lupaSandiMouseClicked
+        // TODO add your handling code here:
+        new lupaSandi().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_lupaSandiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -89,6 +170,15 @@ public class MainLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel background;
+    private javax.swing.JButton btn_login;
+    private javax.swing.JPanel btn_lupaSandi;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField kata_sandi;
+    private javax.swing.JLabel kotak_login;
+    private javax.swing.JLabel login;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel lupa_sandi;
+    private javax.swing.JTextField nama_pengguna;
     // End of variables declaration//GEN-END:variables
 }
