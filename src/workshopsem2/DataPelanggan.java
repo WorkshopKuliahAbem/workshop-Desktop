@@ -31,6 +31,7 @@ public class DataPelanggan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
         txt_nohp = new javax.swing.JTextField();
         txt_alamat = new javax.swing.JTextField();
         txt_nama = new javax.swing.JTextField();
@@ -50,9 +51,11 @@ public class DataPelanggan extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
+=======
+>>>>>>> parent of 57f9c7c (update icon data pelanggan + dashboard)
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+<<<<<<< HEAD
         txt_nohp.setBackground(new Color(0,0,0,0));
         txt_nohp.setFont(new java.awt.Font("Lexend", 1, 25)); // NOI18N
         txt_nohp.setBorder(null);
@@ -132,6 +135,18 @@ public class DataPelanggan extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Data Pelanggan/Data Pelanggan background.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
+=======
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+>>>>>>> parent of 57f9c7c (update icon data pelanggan + dashboard)
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -198,6 +213,7 @@ public class DataPelanggan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
     private javax.swing.JLabel btn_bersihkan;
     private javax.swing.JLabel btn_edit;
     private javax.swing.JLabel btn_hapus;
@@ -216,5 +232,7 @@ public class DataPelanggan extends javax.swing.JFrame {
     private javax.swing.JTextField txt_alamat;
     private javax.swing.JTextField txt_nama;
     private javax.swing.JTextField txt_nohp;
+=======
+>>>>>>> parent of 57f9c7c (update icon data pelanggan + dashboard)
     // End of variables declaration//GEN-END:variables
 }
