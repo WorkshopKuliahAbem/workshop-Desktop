@@ -4,6 +4,11 @@
  */
 package workshopsem2;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import java.awt.Color;
 /**
  *
  * @author dzikr
@@ -26,11 +31,20 @@ public class DataPelanggan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txt_nohp = new javax.swing.JTextField();
+        txt_alamat = new javax.swing.JTextField();
+        txt_nama = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        fieldnama = new javax.swing.JLabel();
+        fieldnohp = new javax.swing.JLabel();
+        fieldalamat = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        btn_edit = new javax.swing.JLabel();
+        btn_tambah = new javax.swing.JLabel();
+        btn_bersihkan = new javax.swing.JLabel();
+        btn_hapus = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -39,20 +53,73 @@ public class DataPelanggan extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txt_nohp.setBackground(new Color(0,0,0,0));
+        txt_nohp.setFont(new java.awt.Font("Lexend", 1, 25)); // NOI18N
+        txt_nohp.setBorder(null);
+        txt_nohp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nohpActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_nohp, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 370, 470, 40));
+
+        txt_alamat.setBackground(new Color(0,0,0,0));
+        txt_alamat.setFont(new java.awt.Font("Lexend", 1, 25)); // NOI18N
+        txt_alamat.setBorder(null);
+        txt_alamat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_alamatActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 490, 470, 40));
+
+        txt_nama.setBackground(new Color(0,0,0,0));
+        txt_nama.setFont(new java.awt.Font("Lexend", 1, 25)); // NOI18N
+        txt_nama.setBorder(null);
+        txt_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_namaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 260, 470, 40));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Data Pelanggan/Nama.png"))); // NOI18N
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 220, -1, 30));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Data Pelanggan/No. HP.png"))); // NOI18N
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 340, -1, -1));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Data Pelanggan/Alamat.png"))); // NOI18N
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, -1, -1));
+
+        fieldnama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Data Pelanggan/text field.png"))); // NOI18N
+        getContentPane().add(fieldnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, -1, -1));
+
+        fieldnohp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Data Pelanggan/text field.png"))); // NOI18N
+        getContentPane().add(fieldnohp, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, -1, -1));
+
+        fieldalamat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Data Pelanggan/text field.png"))); // NOI18N
+        getContentPane().add(fieldalamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 490, -1, -1));
+
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Data Pelanggan/Cari.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/button/button edit.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 610, -1, -1));
+        btn_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/button/button edit.png"))); // NOI18N
+        getContentPane().add(btn_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 610, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/button/button tambah.png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 610, -1, -1));
+        btn_tambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/button/button tambah.png"))); // NOI18N
+        btn_tambah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_tambahMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 610, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/button/button bersihkan.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 610, -1, -1));
+        btn_bersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/button/button bersihkan.png"))); // NOI18N
+        getContentPane().add(btn_bersihkan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 610, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/button/button hapus.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1520, 610, -1, -1));
+        btn_hapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/button/button hapus.png"))); // NOI18N
+        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(1520, 610, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpg/Data Pelanggan/kotak tabel.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 700, -1, -1));
@@ -68,6 +135,32 @@ public class DataPelanggan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
+        try{
+            String sql = "INSERT INTO customer VALUES (null,'" + txt_nama.getText() + "','" + txt_nohp.getText()+ "','" + txt_alamat.getText() +"')";
+                     Connection conn = (Connection) Utils.getConnection();
+                     PreparedStatement pst = conn.prepareStatement(sql);
+                     ResultSet rs = pst.executeQuery(sql);
+                    JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            
+        }
+    }//GEN-LAST:event_btn_tambahMouseClicked
+
+    private void txt_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_namaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_namaActionPerformed
+
+    private void txt_nohpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nohpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nohpActionPerformed
+
+    private void txt_alamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_alamatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_alamatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,14 +198,23 @@ public class DataPelanggan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btn_bersihkan;
+    private javax.swing.JLabel btn_edit;
+    private javax.swing.JLabel btn_hapus;
+    private javax.swing.JLabel btn_tambah;
+    private javax.swing.JLabel fieldalamat;
+    private javax.swing.JLabel fieldnama;
+    private javax.swing.JLabel fieldnohp;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField txt_alamat;
+    private javax.swing.JTextField txt_nama;
+    private javax.swing.JTextField txt_nohp;
     // End of variables declaration//GEN-END:variables
 }
