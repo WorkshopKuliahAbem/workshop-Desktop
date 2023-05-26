@@ -288,37 +288,41 @@ public class Transaksi extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String status = (jCheckBox1.isSelected()) ? "lunas" : "belum lunas";
-        int jumlahBayar = (jCheckBox1.isSelected()) ? Integer.valueOf(String.valueOf(jTextField4.getText())) : 0;
-        String query = "INSERT INTO header_transaction values(null, 1, 1, '"+ status +"', "+ jumlahBayar +", now(), null)";
-        try {
-            Utils.execQuery(query);
+        if (jTable2.getRowCount() > 0) {
+            String status = (jCheckBox1.isSelected()) ? "lunas" : "belum lunas";
+            int jumlahBayar = (jCheckBox1.isSelected()) ? Integer.valueOf(String.valueOf(jTextField4.getText())) : 0;
+            String query = "INSERT INTO header_transaction values(null, 1, "+ idCust +", '"+ status +"', "+ jumlahBayar +", now(), null)";
             try {
-                String getIDTransaction = "SELECT id_header_transaction FROM header_transaction order by id_header_transaction DESC LIMIT 1";
-                Statement st = (Statement) Utils.getConnection().createStatement();
-                ResultSet rs = st.executeQuery(getIDTransaction);
-                int idTransaction;
-                if (rs.next()) {
-                    idTransaction = rs.getInt("id_header_transaction");
-                    for(int i = 0; i < jTable2.getRowCount(); i++){
-                        int serviceID = Integer.valueOf(jTable2.getValueAt(i, 0).toString());
-                        int subtotal = Integer.valueOf(jTable2.getValueAt(i, 4).toString());
-                        int qty = Integer.valueOf(jTable2.getValueAt(i, 2).toString());
-                        String queryDetail = "INSERT INTO detail_transaction(id_header_transaction, id_service, price_detail_transaction, total_unit_transaction) VALUES("+ idTransaction +", "+ serviceID +", "+ subtotal +", "+ qty +")";
-                        try {
-                            Utils.execQuery(queryDetail);
-                        } catch(Exception e){
-                            JOptionPane.showMessageDialog(this, "Detail " + e.getMessage());
+                Utils.execQuery(query);
+                try {
+                    String getIDTransaction = "SELECT id_header_transaction FROM header_transaction order by id_header_transaction DESC LIMIT 1";
+                    Statement st = (Statement) Utils.getConnection().createStatement();
+                    ResultSet rs = st.executeQuery(getIDTransaction);
+                    int idTransaction;
+                    if (rs.next()) {
+                        idTransaction = rs.getInt("id_header_transaction");
+                        for(int i = 0; i < jTable2.getRowCount(); i++){
+                            int serviceID = Integer.valueOf(jTable2.getValueAt(i, 0).toString());
+                            int subtotal = Integer.valueOf(jTable2.getValueAt(i, 4).toString());
+                            int qty = Integer.valueOf(jTable2.getValueAt(i, 2).toString());
+                            String queryDetail = "INSERT INTO detail_transaction(id_header_transaction, id_service, price_detail_transaction, total_unit_transaction) VALUES("+ idTransaction +", "+ serviceID +", "+ subtotal +", "+ qty +")";
+                            try {
+                                Utils.execQuery(queryDetail);
+                            } catch(Exception e){
+                                JOptionPane.showMessageDialog(this, "Detail " + e.getMessage());
+                            }
                         }
+                        clear();
+                        JOptionPane.showMessageDialog(this, "Success");
                     }
-                    clear();
-                    JOptionPane.showMessageDialog(this, "Success");
+                } catch(Exception ex){
+                    JOptionPane.showMessageDialog(this, "get id " + ex.getMessage());
                 }
-            } catch(Exception ex){
-                JOptionPane.showMessageDialog(this, "get id " + ex.getMessage());
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
             }
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(this, "Pilih satu layanan");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
