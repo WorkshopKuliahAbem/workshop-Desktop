@@ -18,7 +18,7 @@ public class Utils {
     private static Connection conn;
     public static final Connection getConnection(){
         try{
-            String url = "jdbc:mysql://localhost:3306/laviere_laundry?zeroDateTimeBehavior=CONVERT_TO_NULL";
+            String url = "jdbc:mysql://localhost:3306/laundry_db?zeroDateTimeBehavior=CONVERT_TO_NULL";
             String username = "root";
             String pass = "";
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
