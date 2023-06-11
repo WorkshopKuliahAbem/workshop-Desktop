@@ -5,6 +5,7 @@
  */
 package workshopsem2.main;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,7 +35,7 @@ public class PengeluaranForm extends javax.swing.JFrame {
     }
     
     void loadData(String param){
-        String query = "select pengeluaran.id_pengeluaran, mst_kategori_pengeluaran.nama_kategori, pengeluaran.jumlah_pengeluaran, pengeluaran.tgl_pengeluaran from pengeluaran join mst_kategori_pengeluaran on mst_kategori_pengeluaran.id_kategori_pengeluaran = pengeluaran.id_kategori_pengeluaran " + param;
+        String query = "select pengeluaran.deskripsi pengeluaran.id_pengeluaran, mst_kategori_pengeluaran.nama_kategori, pengeluaran.jumlah_pengeluaran, pengeluaran.tgl_pengeluaran from pengeluaran join mst_kategori_pengeluaran on mst_kategori_pengeluaran.id_kategori_pengeluaran = pengeluaran.id_kategori_pengeluaran " + param;
         try {
             Statement st = Utils.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -43,6 +44,7 @@ public class PengeluaranForm extends javax.swing.JFrame {
             dt.addColumn("Nama pengeluaran");
             dt.addColumn("Besaran");
             dt.addColumn("Tanggal");
+            dt.addColumn("Deskripsi");
             jTable1.setModel(dt);
             int i = 1;
             
@@ -51,7 +53,8 @@ public class PengeluaranForm extends javax.swing.JFrame {
                     i++,
                     rs.getString("nama_kategori"),
                     rs.getInt("jumlah_pengeluaran"),
-                    rs.getDate("tgl_pengeluaran")
+                    new SimpleDateFormat("dd MMMM YYYY").format(rs.getDate("tgl_pengeluaran")),
+                    (rs.getString("deskripsi") != null) ? rs.getString("deskripsi") : "-"
                 });
                 
                 jTable1.setModel(dt);
@@ -85,6 +88,7 @@ public class PengeluaranForm extends javax.swing.JFrame {
         jButton5.setEnabled(false);
         jComboBox1.setEnabled(false);
         jTextField1.setEnabled(false);
+        jTextField2.setEnabled(false);
     }
     
     void enabled(){
@@ -95,10 +99,12 @@ public class PengeluaranForm extends javax.swing.JFrame {
         jButton5.setEnabled(true);
         jComboBox1.setEnabled(true);
         jTextField1.setEnabled(true);
+        jTextField2.setEnabled(true);
     }
     
     void clear(){
         jTextField1.setText("");
+        jTextField2.setText("");
     }
     
     boolean val(){
@@ -128,6 +134,7 @@ public class PengeluaranForm extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -191,7 +198,7 @@ public class PengeluaranForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -204,19 +211,24 @@ public class PengeluaranForm extends javax.swing.JFrame {
                                 .addComponent(jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton5))
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(401, 401, 401)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                    .addGap(16, 16, 16)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jComboBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -226,6 +238,11 @@ public class PengeluaranForm extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jButton5))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addGap(416, 416, 416)))
         );
 
         pack();
@@ -272,10 +289,10 @@ public class PengeluaranForm extends javax.swing.JFrame {
             int idPengeluaran = listIDKategori.get(jComboBox1.getSelectedIndex());
             int jumlahPengeluaran = Integer.valueOf(jTextField1.getText().toString());
             if (cond == 1) {
-                query = "INSERT INTO pengeluaran VALUES(null, 1, "+ idPengeluaran +", "+ jumlahPengeluaran +", now())";
+                query = "INSERT INTO pengeluaran VALUES(null, 1, "+ idPengeluaran +", "+ jumlahPengeluaran +", now(), '"+jTextField2.getText().toString()+"')";
                 message = "menambahkan";
             } else {
-                query = "UPDATE `pengeluaran` SET id_kategori_pengeluaran = " + idPengeluaran +", jumlah_pengeluaran = " + jumlahPengeluaran + " where id_pengeluaran = " + idPengeluaranForm;
+                query = "UPDATE `pengeluaran` SET id_kategori_pengeluaran = " + idPengeluaran +", jumlah_pengeluaran = " + jumlahPengeluaran + ", deskripsi = '"+ jTextField2.getText().toString() +"' where id_pengeluaran = " + idPengeluaranForm;
                 System.out.println(query);
                 message = "mengubah";
             }
@@ -304,6 +321,7 @@ public class PengeluaranForm extends javax.swing.JFrame {
         idPengeluaranForm = listIDPengeluaran.get(index);
         jComboBox1.setSelectedItem(jTable1.getValueAt(index, 1));
         jTextField1.setText(jTable1.getValueAt(index, 2).toString());
+        jTextField2.setText(jTable1.getValueAt(index, 4).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -351,5 +369,6 @@ public class PengeluaranForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
